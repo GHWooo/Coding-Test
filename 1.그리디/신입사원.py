@@ -51,3 +51,26 @@ for _ in range(T):
 for s in result:
     print(s)
   
+
+
+# 최적 풀이
+
+# import sys
+# t = int(sys.stdin.readline())
+
+# def solve(n):
+#     score = [0] * (n + 1)
+#     for _ in range(n):
+#         x, y = map(int, sys.stdin.readline().split())
+#         score[x] = y
+
+#     limit = n
+#     for i in range(1, n + 1):
+#         if score[i] > limit:
+#             n -= 1
+#         else:
+#             limit = min(limit, score[i])
+#     return n
+
+# for _ in range(t):
+#     print(solve(int(sys.stdin.readline())))
