@@ -1,3 +1,5 @@
+# ing...
+
 import sys
 
 list = [list(sys.stdin.readline().rstrip('\n')) for _ in range(4)]
