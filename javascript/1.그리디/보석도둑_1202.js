@@ -1,50 +1,80 @@
-// const fs = require('fs');
-// const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+const fs = require('fs');
+const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
-// const N = Number(input[0].split(' ')[0]);
-// const K = Number(input[0].split(' ')[1]);
+[n, ...arr] = input;
+const N = Number(n.split(' ')[0]);
+const K = Number(n.split(' ')[1]);
+const gem = [];
+const bag = [];
 
-// let C_array = [];
-// for(let i=N+1; i<=N+K; i++){
-//     C_array.push(Number(input[i]));
-// }
-// C_array.sort(function(a, b){
-//     return a - b;
-// });
+for(let i = 0; i < arr.length; i++){
+    if(i < N){
+        gem.push(arr[i].split(' ').map((v)=>Number(v)));
+    }
+    else{
+        bag.push(Number(arr[i]));
+    }
+}
 
-// let M_V_array = [];
-// for(let i=1; i<=N; i++){
-//     const M = Number(input[i].split(' ')[0]);
-//     const V = Number(input[i].split(' ')[1]);
-//     M_V_array.push([M, V]);
-// }
-// M_V_array.sort(function(a, b){
-//     return a[0] - b[0];
-// })
-// readline으로 풀어볼것
+gem.sort(function(a, b){
+    return a[0] - b[0];
+})
+bag.sort(function(a, b){
+    return a - b;
+})
 
-let result = 0;
-let valid_gem = []
-let start_index = 0;
+function Element(price){
+    this.price = price;
+}
+function PriorityQueue(){
+    this.array = [];
+}
+PriorityQueue.prototype.enqueue = function(data){
+    let element = new Element(data);
+    let added = false;
 
-for(let i=0; i< C_array.length; i++){
-    const bag_capacity = C_array[i];
-
-    for(let k=start_index; k < M_V_array.length; k++){
-        if(M_V_array[k][0] > bag_capacity){
-            start_index = k;
+    for(let i = 0; i < this.array.length; i++){
+        if(element.price > this.array[i].price){
+            this.array.splice(i, 0, element);
+            added = true;
             break;
         }
-        else{
-            valid_gem.push(M_V_array[k]);
-        }
     }
-    valid_gem.sort(function(a, b){
-        return a[1] - b[1];
-    })
+    if(!added){
+        this.array.push(element);
+    }
+}
+PriorityQueue.prototype.dequeue = function(){
+    return this.array.shift();
+}
+PriorityQueue.prototype.front = function(){
+    return this.array.length === 0 ? undefined : this.array[0];
+}
 
-    max_gem = valid_gem.pop()[1];
-    result+= max_gem;
+let pq = new PriorityQueue();
+let gem_pointer = 0;
+let result = 0;
+
+for(let i = 0; i < K; i++){
+    result += bag_check(i);
 }
 
 console.log(result);
+
+function bag_check(index){
+    let max;
+
+    while(gem_pointer < N && gem[gem_pointer][0] <= bag[index]){
+        pq.enqueue(gem[gem_pointer++][1]);
+    }
+    
+    if(pq.array.length === 0){
+        return 0;
+    }
+    else{
+        max = pq.front().price;
+        pq.dequeue();
+    }
+
+    return max;
+}
