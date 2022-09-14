@@ -6,30 +6,38 @@ const fs = require('fs');
 [n, m] = nm.split(' ').map(Number);
 input = input.map(x=>x.split(' ').map(Number));
 
-let visited = [];
 let trust = Array.from({length: n+1}, ()=>[]);
-input.map(([x, y])=>trust[x].push(y));
+input.map(([x, y])=>trust[y].push(x));
 let result = [];
+let queue = [];
 let max = 0;
 
-const dfs = (num) => {
+const bfs = (num) => {
+    let visited = [];
+    queue.push(num);
+    visited[num] = 1;
     let count = 1;
-    if(!trust[num].length){
-        visited[num] = 1; return count;
+    while(queue.length){
+        const q = queue.shift();
+        for(i of trust[q]){
+            if(!visited[i]){
+                visited[i] = 1;
+                count++;
+                queue.push(i);
+            }
+        }
     }
-    for(i of trust[num]){
-        if(visited[i]){
-            visited[num] = count + visited[i];
-            continue;
-        }   
-        count += dfs(i);
-        visited[num] = count;
-    }
-    return count
+    return count;
 }
 for(let i = 1; i <= n; i++){
-    result[i] = dfs(i);
+    const temp = bfs(i);
+    if(max === temp){
+        result.push(i);
+    }
+    else if(max < temp){
+        max = temp;
+        result = [i];
+    }
 }
-
 result.sort((a, b) => a - b);
 console.log(result.join(' '));
