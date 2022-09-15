@@ -1,4 +1,4 @@
-// 해결
+//solved
 const fs = require('fs');
 [n, ...cases] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 

@@ -1,4 +1,4 @@
-// 해결
+//solved
 const fs = require('fs');
 [n, m, ...input] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 input = input.map(x=>x.split(' ').map(Number));

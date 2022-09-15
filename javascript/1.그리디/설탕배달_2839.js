@@ -1,5 +1,4 @@
-//해결
-
+//solved
 const fs = require('fs');
 let N = fs.readFileSync('/dev/stdin').toString().trim();
 let count_three = 0;
