@@ -1,3 +1,4 @@
+// 해결
 const fs = require('fs');
 [n, ...cases] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
