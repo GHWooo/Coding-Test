@@ -1,4 +1,4 @@
-// 실패
+// timeout
 // dfs로 풀면 틀리기 때문에
 // bfs로 풀어야 할 것 같지만 시간초과를 해결하지 못함.
 const fs = require('fs');
