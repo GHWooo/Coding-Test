@@ -1,3 +1,4 @@
+// solved
 const fs = require('fs');
 let n = parseInt(fs.readFileSync('/dev/stdin').toString().trim());
 let list = [];
