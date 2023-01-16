@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="04022110-1f46-4fd2-a85c-dcdf344db771" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/swea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_1204.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_1209.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_1936.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_1959.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_1961.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_1974.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_2058.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_2063.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_2068.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/swea/Solution_2072.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KPLJR5WzJx1cEKJ6uX4wzjz6hE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/guhyeon-u/git/coding_test/java&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="coding_test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="coding_test" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04022110-1f46-4fd2-a85c-dcdf344db771" name="Changes" comment="" />
+      <created>1673871198364</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673871198364</updated>
+    </task>
+    <servers />
+  </component>
+</project>
