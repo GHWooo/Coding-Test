@@ -2,15 +2,15 @@ package homework;
 
 import java.util.Arrays;
 
-public class UserManager {
+public class hw0119_UserManager {
 
 	private final int MAX_SIZE = 100;
 
 	private int size = 0;
 	
-	private User[] userList = new User[MAX_SIZE];
+	private hw0119_User[] userList = new hw0119_User[MAX_SIZE];
 
-	public void add(User user) {
+	public void add(hw0119_User user) {
 		if (size < MAX_SIZE) {
 			userList[size++] = user;
 		} else {
@@ -18,31 +18,31 @@ public class UserManager {
 		}
 	}
 
-	public User[] getList() {
+	public hw0119_User[] getList() {
 
 		return Arrays.copyOfRange(userList, 0, size);
 	}
 	
 	// 일반 사용자만 반환
-	public User[] getUsers() {
+	public hw0119_User[] getUsers() {
 		
 		int cnt = 0;
 		
 		for(int i=0; i<this.size; i++) {
 			// 리스트안의 객체가 VipUser 클래스의 인스턴스인지 검사
-			if(!(userList[i] instanceof VipUser)) {
+			if(!(userList[i] instanceof hw0119_VipUser)) {
 				cnt++;
 			}
 		}
 		
 		if (cnt == 0)
 			return null;
-		
-		User[] res = new User[cnt];
+
+		hw0119_User[] res = new hw0119_User[cnt];
 		
 		for(int i=0, index = 0; i<this.size; i++) {
 			// 리스트안의 객체가 VipUser 클래스의 인스턴스인지 검사
-			if(!(userList[i] instanceof VipUser)) {
+			if(!(userList[i] instanceof hw0119_VipUser)) {
 				res[index++] = userList[i];
 			}
 		}
@@ -52,26 +52,26 @@ public class UserManager {
 	}
 	
 	// VipUser만 반환
-	public VipUser[] getVipUsers() {
+	public hw0119_VipUser[] getVipUsers() {
 		
 		int cnt = 0;
 		
 		for(int i=0; i<this.size; i++) {
 			// 리스트안의 객체가 VipUser 클래스의 인스턴스인지 검사
-			if(userList[i] instanceof VipUser) {
+			if(userList[i] instanceof hw0119_VipUser) {
 				cnt++;
 			}
 		}
 		
 		if (cnt == 0)
 			return null;
-		
-		VipUser[] res = new VipUser[cnt];
+
+		hw0119_VipUser[] res = new hw0119_VipUser[cnt];
 		
 		for(int i=0, index = 0; i<this.size; i++) {
 			// 리스트안의 객체가 VipUser 클래스의 인스턴스인지 검사
-			if(userList[i] instanceof VipUser) {
-				res[index++] = (VipUser)userList[i];
+			if(userList[i] instanceof hw0119_VipUser) {
+				res[index++] = (hw0119_VipUser)userList[i];
 			}
 		}
 		
@@ -79,7 +79,7 @@ public class UserManager {
 		
 	}
 	
-	public User[] searchByName(String name) {
+	public hw0119_User[] searchByName(String name) {
 
 		int cnt = 0;
 
@@ -93,7 +93,7 @@ public class UserManager {
 		if (cnt == 0)
 			return null;
 
-		User[] res = new User[cnt];
+		hw0119_User[] res = new hw0119_User[cnt];
 
 		for (int i = 0, index = 0; i < this.size; i++) {
 			// 주어진 이름을 포함하는 사용자인지 검사

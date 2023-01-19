@@ -1,6 +1,6 @@
 package homework;
 
-public class UserTest {
+public class hw0118_UserTest {
 
 	public static void main(String[] args) {
 		

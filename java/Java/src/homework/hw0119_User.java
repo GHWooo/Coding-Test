@@ -1,6 +1,6 @@
 package homework;
 
-public class User {
+public class hw0119_User {
 
 	private String id;
 	private String password;
@@ -8,9 +8,9 @@ public class User {
 	private String email;
 	private int age;
 	
-	public User() {}
+	public hw0119_User() {}
 
-	public User(String id, String password, String name, String email, int age) {
+	public hw0119_User(String id, String password, String name, String email, int age) {
 		super();
 		this.id = id;
 		this.password = password;

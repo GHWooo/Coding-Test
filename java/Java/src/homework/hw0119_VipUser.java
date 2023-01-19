@@ -1,17 +1,17 @@
 package homework;
 
-public class VipUser extends User {
+public class hw0119_VipUser extends hw0119_User {
 	
 	// 새로 추가된 필드 접근 제한자 설정
 	private String grade;
 	private int point;
 
-	public VipUser() {
+	public hw0119_VipUser() {
 		// 부모 클래스의 생성자 호출
 		super();
 	}
 
-	public VipUser(String id, String password, String name, String email, int age, String grade, int point) {
+	public hw0119_VipUser(String id, String password, String name, String email, int age, String grade, int point) {
 		// 부모 클래스의 생성자 호출
 		super(id, password, name, email, age);
 		this.grade = grade;
