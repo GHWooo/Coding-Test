@@ -1,6 +1,8 @@
 // solved
 package baekjoon;
 
+import java.io.*;
+
 public class Solution_17478 {
     static String question = "\"재귀함수가 뭔가요?\"\n";
     static String[] long_answer = {"\"잘 들어보게. 옛날옛날 한 산 꼭대기에 이세상 모든 지식을 통달한 선인이 있었어.\n",
