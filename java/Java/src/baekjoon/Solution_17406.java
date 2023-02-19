@@ -27,7 +27,6 @@ public class Solution_17406 {
         }
     }
     static void rotation(int x, int y, int s, int[][] cur_board) {
-//        System.out.println(x + " " + y + " " + s);
         int tx = x - 1;
         int ty = y - 1;
         int current = cur_board[tx][ty];
@@ -52,13 +51,6 @@ public class Solution_17406 {
             cur_board[tx][ty] = current;
             current = temp;
         }
-
-//        for(int[] temp1: cur_board) {
-//            for(int num: temp1) {
-//                System.out.print(num + " ");
-//            }
-//            System.out.println();
-//        }
 
         if(s > 1) rotation(x + 1, y + 1, s - 1, cur_board);
     }
