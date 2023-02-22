@@ -1,4 +1,6 @@
-package solved;
+// solved
+
+package swea;
 
 import java.util.Scanner;
 
