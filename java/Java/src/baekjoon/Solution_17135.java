@@ -19,7 +19,6 @@ public class Solution_17135 {
     static int enemy_count;
     static int kill_count;
     static boolean[] kill_visited;
-    static boolean[] shoot_visited;
 
     public static void main(String[] args) throws Exception{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -86,8 +85,6 @@ public class Solution_17135 {
         kill_visited = new boolean[enemy_count];
 
         while(enemy_count > 0) {
-            shoot_visited = new boolean[3];
-
             Shoot();
             Move();
         }
