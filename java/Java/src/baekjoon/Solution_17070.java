@@ -14,8 +14,6 @@ public class Solution_17070 {
     static int[][] perpen = {{1, 0, 1, 0, 2}, {1, 0, 1, 1, 1}};
     static int[][] diagonal = {{1, 1, 0, 1, 0}, {1, 1, 1, 1, 1}, {1, 1, 1, 0, 2}};
 
-    static Queue<int[]> queue = new LinkedList<>();
-
     static int count = 0;
 
     public static void main(String[] args) throws Exception {
