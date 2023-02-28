@@ -11,7 +11,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Solution_1238 {
-    static int l;åå
+    static int l;
     static int start;
     static int size = 100 + 1;
     static int[] visit;
