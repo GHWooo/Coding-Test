@@ -1,82 +1,106 @@
-//timeout
+// solved
 
-const fs = require('fs');
-const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
+class MaxHeap {
+  constructor() {
+    this.heap = [];
+  }
 
-[n, ...arr] = input;
-const N = Number(n.split(' ')[0]);
-const K = Number(n.split(' ')[1]);
-const gem = [];
+  empty() {
+    if (this.heap.length === 0) {
+      return true;
+    }
+    return false;
+  }
+
+  swap(arr, x, y) {
+    let temp = arr[x];
+    arr[x] = arr[y];
+    arr[y] = temp;
+  }
+
+  insert(value) {
+    this.heap.push(value);
+    this.bubbleUp();
+  }
+
+  bubbleUp() {
+    let currentIndex = this.heap.length - 1;
+
+    while (currentIndex > 0) {
+      const parentIndex = Math.floor((currentIndex - 1) / 2);
+
+      if (this.heap[parentIndex] >= this.heap[currentIndex]) break;
+
+      this.swap(this.heap, parentIndex, currentIndex);
+      currentIndex = parentIndex;
+    }
+  }
+
+  extract() {
+    if (this.heap.length === 1) {
+      return this.heap.pop();
+    }
+
+    const answer = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.bubbleDown(0);
+
+    return answer;
+  }
+
+  bubbleDown(index) {
+    const leftIndex = 2 * index + 1;
+    const rightIndex = 2 * index + 2;
+    const length = this.heap.length;
+
+    let smallestIndex = index;
+
+    if (leftIndex < length && this.heap[leftIndex] > this.heap[smallestIndex]) {
+      smallestIndex = leftIndex;
+    }
+    if (rightIndex < length && this.heap[rightIndex] > this.heap[smallestIndex]) {
+      smallestIndex = rightIndex;
+    }
+
+    if (smallestIndex !== index) {
+      this.swap(this.heap, index, smallestIndex);
+      this.bubbleDown(smallestIndex);
+    }
+  }
+}
+
+const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
+const fs = require("fs");
+let [NK, ...input] = fs.readFileSync(filePath).toString().split("\n");
+
+const [N, K] = NK.split(" ").map(Number);
+const jewel = [];
 const bag = [];
 
-for(let i = 0; i < arr.length; i++){
-    if(i < N){
-        gem.push(arr[i].split(' ').map((v)=>Number(v)));
-    }
-    else{
-        bag.push(Number(arr[i]));
-    }
+let cursor = 0;
+
+for (let i = 0; i < N; i++) {
+  jewel.push(input[cursor++].split(" ").map(Number));
+}
+jewel.sort((a, b) => a[0] - b[0]);
+
+for (let i = 0; i < K; i++) {
+  bag.push(Number(input[cursor++]));
+}
+bag.sort((a, b) => a - b);
+
+const maxHeap = new MaxHeap();
+
+let result = 0n;
+let jewelIndex = 0;
+
+for (let i = 0; i < K; i++) {
+  while (jewelIndex < N && jewel[jewelIndex][0] <= bag[i]) {
+    maxHeap.insert(jewel[jewelIndex][1]);
+    jewelIndex++;
+  }
+
+  if (!maxHeap.empty()) result += BigInt(maxHeap.extract());
 }
 
-gem.sort(function(a, b){
-    return a[0] - b[0];
-})
-bag.sort(function(a, b){
-    return a - b;
-})
-
-function Element(price){
-    this.price = price;
-}
-function PriorityQueue(){
-    this.array = [];
-}
-PriorityQueue.prototype.enqueue = function(data){
-    let element = new Element(data);
-    let added = false;
-
-    for(let i = 0; i < this.array.length; i++){
-        if(element.price > this.array[i].price){
-            this.array.splice(i, 0, element);
-            added = true;
-            break;
-        }
-    }
-    if(!added){
-        this.array.push(element);
-    }
-}
-PriorityQueue.prototype.dequeue = function(){
-    return this.array.shift();
-}
-PriorityQueue.prototype.front = function(){
-    return this.array.length === 0 ? undefined : this.array[0];
-}
-
-let pq = new PriorityQueue();
-let gem_pointer = 0;
-let result = 0;
-
-for(let i = 0; i < K; i++){
-    result += bag_check(i);
-}
-
-console.log(result);
-
-function bag_check(index){
-    let max;
-
-    while(gem_pointer < N && gem[gem_pointer][0] <= bag[index]){
-        pq.enqueue(gem[gem_pointer++][1]);
-    }
-    
-    if(pq.array.length === 0){
-        return 0;
-    }
-    else{
-        max = pq.front().price;
-        pq.dequeue();
-    }
-
-    return max;
-}
+console.log(`${result}`);
