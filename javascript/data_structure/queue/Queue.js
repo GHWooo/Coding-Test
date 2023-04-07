@@ -1,55 +1,34 @@
-class Node{
-    constructor(item){
-        this.item = item;
-        this.next = null;
-    }
+class Node {
+  constructor(item) {
+    this.item = item;
+    this.next = null;
+  }
 }
-  
-class Queue{
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
-    }
 
-    push(item){
-        const node = new Node(item)
-        if(this.head==null){
-        this.head= node;
-        }else{
-        this.tail.next = node;
-        }
+class Queue {
+  constructor() {
+    this.front = null;
+    this.back = null;
+  }
 
-        this.tail = node;
-        this.length +=1;
-    }
+  isEmpty() {
+    if (this.front === null) return true;
+    return false;
+  }
 
-    pop(){
-        const popItem = this.head;
-        this.head = this.head.next;
-        this.length -=1;
-        return popItem.item;
-    }
+  add(item) {
+    const node = new Node(item);
 
-    size(){
-        return this.length;
-    }
+    if (!this.isEmpty()) this.back.next = node;
+    else this.front = node;
 
-    empty(){
-        if(this.length==0){
-        return 1;
-        }else{
-        return 0;
-        }
-    }
+    this.back = node;
+  }
 
-    front(){
-        if(this.empty()==1) return -1;
-        return this.head.item; 
-    }
+  poll() {
+    const answer = this.front.item;
+    this.front = this.front.next;
 
-    back(){
-        if(this.empty()==1) return -1;
-        return this.tail.item; 
-    }
+    return answer;
+  }
 }
