@@ -1,67 +1,70 @@
 class MaxHeap {
-    constructor() {
-        this.heap = [];
+  constructor() {
+    this.heap = [];
+    this.size = 0;
+  }
+
+  isEmpty() {
+    if (!this.heap.length) return true;
+    return false;
+  }
+
+  add(item) {
+    this.heap.push(item);
+    this.bubbleUp();
+
+    this.size++;
+  }
+
+  poll() {
+    if (this.size === 1) return this.heap.pop();
+
+    const answer = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.bubbleDown(0);
+
+    this.size--;
+
+    return answer;
+  }
+
+  swap(p, c) {
+    const temp = this.heap[p];
+    this.heap[p] = this.heap[c];
+    this.heap[c] = temp;
+  }
+
+  bubbleUp() {
+    let currentIndex = this.size - 1;
+
+    while (currentIndex > 0) {
+      const parentIndex = Math.floor((currentIndex - 1) / 2);
+
+      if (this.heap[parentIndex] >= this.heap[currentIndex]) return;
+
+      this.swap(parentIndex, currentIndex);
+      currentIndex = parentIndex;
+    }
+  }
+
+  bubbleDown(index) {
+    const leftIndex = 2 * index + 1;
+    const rightIndex = 2 * index + 2;
+    const length = this.size;
+
+    let smallestIndex = index;
+
+    if (leftIndex < length && this.heap[leftIndex] > this.heap[smallestIndex]) {
+      smallestIndex = leftIndex;
     }
 
-    swap(arr, x, y) {
-        let temp = arr[x];
-        arr[x] = arr[y];
-        arr[y] = temp;
-        return;
+    if (rightIndex < length && this.heap[rightIndex] > this.heap[smallestIndex]) {
+      smallestIndex = rightIndex;
     }
 
-    empty() {
-        if (this.heap.length == 0) {
-            return true;
-        }
-        return false;
+    if (smallestIndex !== index) {
+      this.swap(index, smallestIndex);
+      this.bubbleDown(smallestIndex);
     }
-
-    insert(value) {
-        this.heap.push(value);
-        this.bubbleUp();
-    }
-
-    bubbleUp() {
-        let currentIndex = this.heap.length - 1;
-
-        while (currentIndex > 0) {
-            const parentIndex = Math.floor((currentIndex - 1) / 2);
-
-            if (this.heap[parentIndex] >= this.heap[currentIndex]) break;
-            this.swap(this.heap, parentIndex, currentIndex);
-            currentIndex = parentIndex;
-        }
-    }
-
-    extractMax() {
-        if (this.heap.length == 1) {
-            return this.heap.pop();
-        }
-        const max = this.heap[0];
-        this.heap[0] = this.heap.pop();
-        this.bubbleDown(0);
-
-        return max;
-    }
-
-    bubbleDown(index) {
-        const leftIndex = 2 * index + 1;
-        const rightIndex = 2 * index + 2;
-        const length = this.heap.length;
-        let largestIndex = index;
-
-        if (leftIndex < length && this.heap[leftIndex] > this.heap[largestIndex]) {
-            largestIndex = leftIndex;
-        }
-
-        if (rightIndex < length && this.heap[rightIndex] > this.heap[largestIndex]) {
-            largestIndex = rightIndex;
-        }
-
-        if (largestIndex !== index) {
-            this.swap(this.heap, largestIndex, index);
-            this.bubbleDown(largestIndex);
-        }
-    }
+  }
 }
