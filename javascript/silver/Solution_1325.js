@@ -1,43 +1,43 @@
-// timeout
-// dfs로 풀면 틀리기 때문에
-// bfs로 풀어야 할 것 같지만 시간초과를 해결하지 못함.
-const fs = require('fs');
-[nm, ...input] = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
-[n, m] = nm.split(' ').map(Number);
-input = input.map(x=>x.split(' ').map(Number));
+// solved
 
-let trust = Array.from({length: n+1}, ()=>[]);
-input.map(([x, y])=>trust[y].push(x));
-let result = [];
-let queue = [];
-let max = 0;
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./input.txt";
+const input = require("fs").readFileSync(filePath).toString().trim().split("\n");
 
-const bfs = (num) => {
-    let visited = [];
-    queue.push(num);
-    visited[num] = 1;
-    let count = 1;
-    while(queue.length){
-        const q = queue.shift();
-        for(i of trust[q]){
-            if(!visited[i]){
-                visited[i] = 1;
-                count++;
-                queue.push(i);
-            }
-        }
-    }
-    return count;
+const [n, m] = input[0].split(" ").map(Number);
+
+const cnt = new Array(n + 1).fill(0);
+const graph = Array.from(Array(n + 1), () => []);
+
+for (let i = 1; i < input.length; i++) {
+  const [a, b] = input[i].split(" ").map(Number);
+  graph[a].push(b);
 }
-for(let i = 1; i <= n; i++){
-    const temp = bfs(i);
-    if(max === temp){
-        result.push(i);
+
+const dfs = (v, visited) => {
+  visited[v] = true;
+  cnt[v] += 1;
+
+  for (let i = 0; i < graph[v].length; i++) {
+    const next = graph[v][i];
+
+    if (!visited[next]) {
+      dfs(next, visited);
     }
-    else if(max < temp){
-        max = temp;
-        result = [i];
-    }
+  }
+};
+
+for (let i = 1; i <= n; i++) {
+  const visited = new Array(n + 1).fill(false);
+  dfs(i, visited);
 }
-result.sort((a, b) => a - b);
-console.log(result.join(' '));
+
+const max = Math.max(...cnt);
+
+const result = [];
+for (let i = 1; i <= n; i++) {
+  if (cnt[i] === max) {
+    result.push(i);
+  }
+}
+
+console.log(result.join(" "));
