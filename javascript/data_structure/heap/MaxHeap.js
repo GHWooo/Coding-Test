@@ -17,7 +17,11 @@ class MaxHeap {
   }
 
   poll() {
-    if (this.size === 1) return this.heap.pop();
+    if (this.size === 1) {
+      this.size--;
+
+      return this.heap.pop();
+    }
 
     const answer = this.heap[0];
     this.heap[0] = this.heap.pop();
