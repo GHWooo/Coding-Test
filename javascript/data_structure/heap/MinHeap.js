@@ -10,10 +10,10 @@ class MinHeap {
   }
 
   add(item) {
+    this.size++;
+
     this.heap.push(item);
     this.bubbleUp();
-
-    this.size++;
   }
 
   poll() {
@@ -23,11 +23,11 @@ class MinHeap {
       return this.heap.pop();
     }
 
+    this.size--;
+
     const answer = this.heap[0];
     this.heap[0] = this.heap.pop();
     this.bubbleDown(0);
-
-    this.size--;
 
     return answer;
   }
