@@ -1,4 +1,4 @@
-// wrong
+// solved
 
 const filePath = process.platform === "linux" ? "/dev/stdin" : "input.txt";
 let [K, ...input] = require("fs").readFileSync(filePath).toString().trim().split("\n");
@@ -21,37 +21,33 @@ for (let tc = 0; tc < +K; tc++) {
 
   const visited = Array(V + 1).fill(0);
 
-  const queue = [];
-  let queueCursor = 0;
-
-  for (let i = 1; i <= V; i++) {
-    if (linked[i].length) {
-      visited[i] = 1;
-      queue.push([i, 1]);
-
-      break;
-    }
-  }
-
   let endFlag = false;
 
-  while (queueCursor < queue.length) {
-    const [current, check] = queue[queueCursor++];
+  for (let i = 1; i <= V; i++) {
+    if (visited[i] !== 0) continue;
 
-    for (let j = 0; j < linked[current].length; j++) {
-      const next = linked[current][j];
+    const queue = [[i, 1]];
+    let queueCursor = 0;
 
-      if (visited[next] === 0) {
-        visited[next] = -check;
-        queue.push([next, visited[next]]);
-      } else {
-        if (check === visited[next]) {
-          endFlag = true;
-          break;
+    while (queueCursor < queue.length) {
+      const [current, check] = queue[queueCursor++];
+
+      for (let j = 0; j < linked[current].length; j++) {
+        const next = linked[current][j];
+
+        if (visited[next] === 0) {
+          visited[next] = -check;
+          queue.push([next, visited[next]]);
+        } else {
+          if (check === visited[next]) {
+            endFlag = true;
+            break;
+          }
         }
       }
-    }
 
+      if (endFlag) break;
+    }
     if (endFlag) break;
   }
 
